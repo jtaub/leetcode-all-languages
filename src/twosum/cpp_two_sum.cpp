@@ -1,40 +1,26 @@
-
 #include <vector>
-#include <unordered_map>
-#include <stdexcept>
+#include <map>
 #include <utility>
 
-// Function to solve the Two Sum problem
-vector<int> twoSum(const vector<int>& nums, int target) {
-    std::unordered_map<int, int> numMap; // Hash table to store number and its index
+using namespace std;
 
-    for (int i = 0; i < static_cast<int>(nums.size()); ++i) {
-        int complement = target - nums[i];
+class Solution {
+    public:
+    static vector<int> twoSum(const vector<int>& nums, const int target) {
+        const auto size = nums.size();
+        std::map<int, int> targetToIndex;
 
-        // Check if the complement exists in the hash table
-        if (numMap.contains(complement)) {
-            return {numMap[complement], i};
+        for (auto i = 0; i < size; ++i) {
+            const auto complement = target - nums[i];
+            if (const auto found = targetToIndex.find(complement); found != targetToIndex.end()) {
+                return {found->second, i};
+            }
+
+            // Store the current number and its index in the hash table
+            targetToIndex[nums[i]] = i;
         }
 
-        // Store the current number and its index in the hash table
-        numMap[nums[i]] = i;
+        // return empty vector
+        return {};
     }
-
-    // If no solution is found, throw an exception
-    throw std::invalid_argument("No two sum solution");
-}
-
-// Example usage
-int main() {
-    std::vector<int> nums = {2, 7, 11, 15};
-    int target = 9;
-
-    try {
-        auto [index1, index2] = twoSum(nums, target);
-        std::cout << "Indices: " << index1 << ", " << index2 << '\n';
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << '\n';
-    }
-
-    return 0;
-}
+};
