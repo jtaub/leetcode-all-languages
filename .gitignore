@@ -869,3 +869,4 @@ cython_debug/
 hs_err_pid*
 replay_pid*
 
+/src/*/META-INF/*
