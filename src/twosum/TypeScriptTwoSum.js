@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.main = void 0;
-function twoSum(nums, target) {
+function typeScriptTwoSum(nums, target) {
     var map = new Map();
     for (var i = 0; i < nums.length; i++) {
         var complement = target - nums[i];
@@ -16,7 +16,7 @@ function main() {
     var nums = [2, 7, 11, 15];
     var target = 9;
     try {
-        var result = twoSum(nums, target);
+        var result = typeScriptTwoSum(nums, target);
         console.log("Indices: ".concat(result, ", Values: [").concat(nums[result[0]], ", ").concat(nums[result[1]], "]"));
     }
     catch (error) {

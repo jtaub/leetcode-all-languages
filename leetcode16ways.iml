@@ -7,11 +7,24 @@
     <facet type="Python" name="Python">
       <configuration sdkName="Python 3.12" />
     </facet>
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="5" platform="JVM 21" allPlatforms="JVM [21]">
+        <compilerSettings />
+        <compilerArguments>
+          <stringArguments>
+            <stringArg name="jvmTarget" arg="21" />
+            <stringArg name="apiVersion" arg="2.1" />
+            <stringArg name="languageVersion" arg="2.1" />
+          </stringArguments>
+        </compilerArguments>
+      </configuration>
+    </facet>
   </component>
   <component name="Go" enabled="true" />
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/twosum" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />

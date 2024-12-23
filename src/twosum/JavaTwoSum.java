@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
-public class TwoSum {
-    public int[] twoSum(int[] nums, int target) {
+public class JavaTwoSum {
+    public static int[] twoSum(int[] nums, int target) {
         var map = new HashMap<Integer, Integer>();
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];
@@ -14,7 +14,7 @@ public class TwoSum {
     }
 
     public static void main(String[] args) {
-        TwoSum twoSum = new TwoSum();
+        JavaTwoSum twoSum = new JavaTwoSum();
         int[] nums = {2, 7, 11, 15};
         int target = 9;
         int[] result = twoSum.twoSum(nums, target);
