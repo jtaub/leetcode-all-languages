@@ -1,13 +1,17 @@
 class TwoSum {
     func findTwoSum(_ nums: [Int], _ target: Int) -> [Int] {
         var numToIndex = [Int: Int]()
-        for (index, num) in nums.enumerated() {
+        
+        for (i, num) in nums.enumerated() {
             let complement = target - num
-            if let complementIndex = numToIndex[complement] {
-                return [complementIndex, index]
+            
+            if let j = numToIndex[complement] {
+                return [j, i]
             }
-            numToIndex[num] = index
+            
+            numToIndex[num] = i
         }
-        return []
+        
+        fatalError("this should not be reachable")
     }
 }
