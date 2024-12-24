@@ -3,13 +3,12 @@ class TwoSum {
         var numToIndex = [Int: Int]()
         
         for (i, num) in nums.enumerated() {
-            let complement = target - num
             
-            if let j = numToIndex[complement] {
+            if let j = numToIndex[num] {
                 return [j, i]
             }
             
-            numToIndex[num] = i
+            numToIndex[target - num] = i
         }
         
         fatalError("No solution")

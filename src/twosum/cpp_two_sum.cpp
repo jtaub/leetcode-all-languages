@@ -9,16 +9,16 @@ class Solution {
     public:
     static vector<int> twoSum(const vector<int>& nums, const int target) {
         const auto size = nums.size();
-        std::map<int, int> targetToIndex;
+        std::map<int, int> num_to_index;
 
         for (auto i = 0; i < size; ++i) {
             const auto complement = target - nums[i];
-            if (const auto found = targetToIndex.find(complement); found != targetToIndex.end()) {
+            if (const auto found = num_to_index.find(complement); found != num_to_index.end()) {
                 return {found->second, i};
             }
 
             // Store the current number and its index in the hash table
-            targetToIndex[nums[i]] = i;
+            num_to_index[nums[i]] = i;
         }
 
         throw std::invalid_argument("No solution");
