@@ -12,6 +12,6 @@ class TwoSum {
             numToIndex[num] = i
         }
         
-        fatalError("this should not be reachable")
+        fatalError("No solution")
     }
 }
