@@ -2,15 +2,14 @@ package twosum
 
 fun twoSum(nums: IntArray, target: Int): IntArray {
     // Map from required value to the index which needs that value
-    val num_to_index = HashMap<Int, Int>(nums.size)
+    val numToIndex = HashMap<Int, Int>(nums.size)
     
-    // todo
     nums.indices.first { i -> 
         val num = nums[i]
-        num_to_index[target - num] = i
-        num in num_to_index
+        numToIndex[target - num] = i
+        num in numToIndex
     }
     
-    val j = num_to_index[i]
+    val j = numToIndex[i]
     return intArrayOf(j, i)
 }
