@@ -1,15 +1,18 @@
 package twosum
 
 fun twoSum(nums: IntArray, target: Int): IntArray {
+    // Map from required value to the index which needs that value
     val numToIndex = HashMap<Int, Int>(nums.size)
-    
-    // Assign the result of this expression to a val named "i"
-    nums.indices.first { i -> 
-        val num = nums[i]
+
+    nums.forEachIndexed { i, num ->
+        val j = numToIndex[num]
+
+        if (j != null) {
+            return intArrayOf(j, i)
+        }
+
         numToIndex[target - num] = i
-        num in numToIndex
     }
-    
-    val j = numToIndex[i]
-    return intArrayOf(j, i)
+
+    error("No solution")
 }
