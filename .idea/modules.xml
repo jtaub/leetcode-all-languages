@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/leetcode16ways.iml" filepath="$PROJECT_DIR$/leetcode16ways.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/leetcode16ways2.iml" filepath="$PROJECT_DIR$/.idea/leetcode16ways2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ruby.iml" filepath="$PROJECT_DIR$/ruby.iml" />
     </modules>
   </component>
 </project>
