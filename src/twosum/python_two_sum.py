@@ -8,5 +8,5 @@ def twoSum(nums: List[int], target: int) -> List[int]:
         if j is not None:
             return [j, i]
         num_to_index[target - num] = i
-        
+
     raise ValueError("No solution")
