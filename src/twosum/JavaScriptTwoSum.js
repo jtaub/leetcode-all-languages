@@ -1,11 +1,21 @@
-function twoSum(nums, target) {
-    const map = new Map();
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+const twoSum = function (nums, target) {
+    const numToIndex = new Map();
+
     for (let i = 0; i < nums.length; i++) {
-        const complement = target - nums[i];
-        if (map.has(complement)) {
-            return [map.get(complement), i];
+        const num = nums[i];
+        const j = numToIndex.get(num);
+
+        if (j !== undefined) {
+            return [j, i];
         }
-        map.set(nums[i], i);
+
+        numToIndex.set(target - num, i);
     }
-    return [];
-}
+
+    throw new Error("No solution");
+};
