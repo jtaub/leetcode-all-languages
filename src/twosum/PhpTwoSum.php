@@ -9,8 +9,8 @@ class PhpTwoSum {
      * @return Integer[]
      */
     function twoSum(array $nums, int $target) {
-
         $numToIndex = [];
+        
         foreach ($nums as $i => $num) {
             $j = $numToIndex[$num];
             

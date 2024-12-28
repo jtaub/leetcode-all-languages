@@ -6,8 +6,7 @@
 const twoSum = function (nums, target) {
     const numToIndex = new Map();
 
-    for (let i = 0; i < nums.length; i++) {
-        const num = nums[i];
+    for (let [i, num] of nums.entries()) {
         const j = numToIndex.get(num);
 
         if (j !== undefined) {
