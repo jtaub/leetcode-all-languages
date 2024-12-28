@@ -37,6 +37,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="library" exported="" name="scala-sdk-3.6.2" level="application" />
-    <orderEntry type="library" name="Dart SDK" level="project" />
+    <orderEntry type="library" exported="" name="Dart SDK" level="project" />
   </component>
 </module>
