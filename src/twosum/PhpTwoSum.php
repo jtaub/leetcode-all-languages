@@ -8,7 +8,7 @@ class PhpTwoSum {
      * @param Integer $target
      * @return Integer[]
      */
-    function twoSum(array $nums, int $target) {
+    function twoSum(array $nums, int $target): array {
         $numToIndex = [];
         
         foreach ($nums as $i => $num) {
@@ -21,6 +21,6 @@ class PhpTwoSum {
             $numToIndex[$target - $num] = $i;
         }
         
-        throw new \BadFunctionCallException('No solution');
+        throw new \BadFunctionCallException("No solution");
     }
 }

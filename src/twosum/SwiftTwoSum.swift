@@ -3,7 +3,6 @@ class TwoSum {
         var numToIndex = [Int: Int]()
         
         for (i, num) in nums.enumerated() {
-            
             if let j = numToIndex[num] {
                 return [j, i]
             }

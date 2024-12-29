@@ -13,7 +13,9 @@ class Solution {
 
         for (auto i = 0; i < size; ++i) {
             const auto complement = target - nums[i];
-            if (const auto found = num_to_index.find(complement); found != num_to_index.end()) {
+            if (const auto found = num_to_index.find(complement);
+                found != num_to_index.end()
+            ) {
                 return {found->second, i};
             }
 
