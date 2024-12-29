@@ -6,9 +6,22 @@ from typing import Any, Mapping
 import cairosvg
 
 
+def plot_sorted_data_as_png(problem_name: str, data: Mapping[str, Mapping[str, Any]]):
+    """Given the name of a leetcode problem and a dictionary of the performance results,
+    plot the results and save as both an SVG and a PNG file"""
+    # sort data by time, use name as tie breaker
+    sorted_data = dict(
+        sorted(data.items(), key=lambda item: (item[1]["time"], item[0]))
+    )
+    svg_content = create_bar_chart_svg(problem_name, sorted_data)
+    output_file = f"{problem_name.replace(' ', '_')}.svg"
+    save_as_svg(output_file, svg_content)
+    save_as_png(output_file)
+
+
 def create_bar_chart_svg(
-    data: Mapping[str, Mapping[str, Any]],
     problem_name: str,
+    data: Mapping[str, Mapping[str, Any]],
     y_label="Time (ms)",
     x_label="Language",
     font_color="white",
@@ -28,6 +41,7 @@ def create_bar_chart_svg(
     image_height=30,
     label_margin=10,
 ) -> str:
+    """Builds a string containing an SVG representation of a bar chart."""
     chart_height = svg_height - top_margin - bottom_margin
     chart_bottom = svg_height - bottom_margin
     width = len(data) * column_width + left_margin + right_margin
@@ -93,7 +107,12 @@ def svg_to_base64(image_path):
         return f"data:{mime_type};base64,{encoded}"
 
 
-def save_as_png(svg_file, png_file="", width=1920, height=1080):
+def save_as_svg(svg_file_name: str, svg_content: str):
+    with open(svg_file_name, "w") as f:
+        f.write(svg_content)
+
+
+def save_as_png(svg_file, png_file="", width=2560, height=1440):
     """Saves our SVG file as a PNG file."""
     cairosvg.svg2png(
         url=svg_file,
@@ -124,13 +143,5 @@ if __name__ == "__main__":
         "Scala": {"time": 25, "image": "Scala.png"},
         "TypeScript": {"time": 0},
     }
-    # sort data by time, use name as tie breaker
-    sorted_data = dict(
-        sorted(data.items(), key=lambda item: (item[1]["time"], item[0]))
-    )
-    output_file = "bar_chart.svg"
-    result = create_bar_chart_svg(sorted_data, "Two Sum")
-    with open(output_file, "w") as f:
-        f.write(result)
 
-    save_as_png(output_file)
+    plot_sorted_data_as_png("Two Sum", data)
