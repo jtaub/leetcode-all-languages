@@ -1,0 +1,112 @@
+import base64
+import math
+import os
+from typing import Any, Mapping
+
+
+def create_bar_chart_svg(
+    data: Mapping[str, Mapping[str, Any]],
+    top_margin=50,
+    bottom_margin=50,
+    left_margin=60,
+    right_margin=20,
+    svg_height=400,
+    column_width=50,
+    bar_width=40,
+    image_offset=5,
+    text_offset=5,
+    grid_spacing=50,
+    image_height=30,
+    label_margin=10,
+) -> str:
+    chart_height = svg_height - top_margin - bottom_margin
+    chart_bottom = svg_height - bottom_margin
+    width = len(data) * column_width + left_margin + right_margin
+
+    max_time = max(result["time"] for result in data.values())
+    max_height = math.ceil(max_time / 5) * 5
+
+    print(f"{max_height=}, {max_time=}")
+
+    svg_elements = [
+        f'<svg viewBox="0 0 {width} {svg_height}" xmlns="http://www.w3.org/2000/svg">'
+    ]
+
+    for y in range(top_margin, chart_bottom, grid_spacing):
+        actual_value = (chart_bottom - y) * max_height / chart_height
+        svg_elements.append(
+            f'<line x1="{left_margin}" y1="{y}" x2="{width - right_margin}" y2="{y}" stroke="#e0e0e0"/>'
+        )
+        svg_elements.append(
+            f'<text x="{left_margin - label_margin}" y="{y + text_offset}" text-anchor="end" fill="white">{actual_value:.0f}</text>'
+        )
+
+    images_directory = os.path.dirname(os.path.realpath(__file__)) + "/images"
+    for i, (language, performance_results) in enumerate(data.items()):
+        x = left_margin + 2 * label_margin + i * column_width
+        height = (performance_results["time"] / max_height) * chart_height
+        print(f"{language=}, {height=}")
+        svg_elements.append(
+            f'<rect x="{x}" y="{chart_bottom - height}" width="{bar_width}" height="{height}" fill="#8884d8"/>'
+        )
+        image_name = performance_results.get("image") or f"{language}.svg"
+        image_path = f"{images_directory}/{image_name}"
+        base64_image = (
+            svg_to_base64(image_path)
+            if image_name.endswith(".svg")
+            else png_to_base64(image_path)
+        )
+        svg_elements.append(
+            f'<image x="{x - image_offset}" y="{chart_bottom + label_margin}" width="{column_width}" height="{image_height}" href="{base64_image}"/>'
+        )
+
+    svg_elements.append("</svg>")
+    return "\n".join(svg_elements)
+
+
+def png_to_base64(image_path: str) -> str:
+    """Encode an image file to base64.
+    This is necessary to do to embed images in SVG files. Otherwise, it fails,
+    likely due to some security restriction."""
+
+    with open(image_path, "rb") as img:
+        encoded = base64.b64encode(img.read()).decode("utf-8")
+        return f"data:image/png;base64,{encoded}"
+
+
+def svg_to_base64(image_path):
+    with open(image_path, "rb") as img:
+        encoded = base64.b64encode(img.read()).decode("utf-8")
+        extension = os.path.splitext(image_path)[1].lower()
+        mime_type = "image/svg+xml" if extension == ".svg" else "image/png"
+        return f"data:{mime_type};base64,{encoded}"
+
+
+if __name__ == "__main__":
+    data = {
+        "C": {"time": 2},
+        "C (loops)": {"time": 99, "image": "C.svg"},
+        "C#": {"time": 3},
+        "C++": {"time": 3},
+        "Dart": {"time": 7},
+        "Elixir": {"time": 3, "image": "Elixir.png"},
+        "Java": {"time": 2},
+        "JavaScript": {"time": 1, "image": "JavaScript.png"},
+        "Kotlin": {"time": 2},
+        "Kotlin (functional)": {"time": 20, "image": "Kotlin.svg"},
+        "PHP": {"time": 1},
+        "Python": {"time": 0},
+        "Racket": {"time": 0},
+        "Ruby": {"time": 0},
+        "Rust": {"time": 0},
+        "Scala": {"time": 25, "image": "Scala.png"},
+        "TypeScript": {"time": 0},
+    }
+    # sort data by time, use name as tie breaker
+    sorted_data = dict(
+        sorted(data.items(), key=lambda item: (item[1]["time"], item[0]))
+    )
+    output_file = "bar_chart.svg"
+    result = create_bar_chart_svg(sorted_data)
+    with open(output_file, "w") as f:
+        f.write(result)
