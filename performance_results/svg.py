@@ -3,9 +3,17 @@ import math
 import os
 from typing import Any, Mapping
 
+import cairosvg
+
 
 def create_bar_chart_svg(
     data: Mapping[str, Mapping[str, Any]],
+    problem_name: str,
+    y_label="Time (ms)",
+    x_label="Language",
+    font_color="white",
+    font_family="Consolas",
+    font_size="24px",
     top_margin=50,
     bottom_margin=50,
     left_margin=60,
@@ -25,11 +33,13 @@ def create_bar_chart_svg(
 
     max_time = max(result["time"] for result in data.values())
     max_height = math.ceil(max_time / 5) * 5
-
-    print(f"{max_height=}, {max_time=}")
+    title = f"LeetCode {problem_name} Benchmarks"
 
     svg_elements = [
         f'<svg viewBox="0 0 {width} {svg_height}" xmlns="http://www.w3.org/2000/svg">'
+        f'<text x="{width/2}" y="{top_margin/2}" text-anchor="middle" fill="{font_color}" font-family="{font_family}" font-size="{font_size}">{title}</text>',
+        f'<text x="{left_margin/3}" y="{svg_height/2}" text-anchor="middle" fill="{font_color}" font-family="{font_family}" font-size="{font_size}" transform="rotate(-90,{left_margin/3},{svg_height/2})">{y_label}</text>',
+        f'<text x="{width/2}" y="{svg_height+bottom_margin/2}" text-anchor="middle" fill="{font_color}" font-family="{font_family}" font-size="{font_size}">{x_label}</text>',
     ]
 
     for y in range(top_margin, chart_bottom, grid_spacing):
@@ -38,14 +48,13 @@ def create_bar_chart_svg(
             f'<line x1="{left_margin}" y1="{y}" x2="{width - right_margin}" y2="{y}" stroke="#e0e0e0"/>'
         )
         svg_elements.append(
-            f'<text x="{left_margin - label_margin}" y="{y + text_offset}" text-anchor="end" fill="white">{actual_value:.0f}</text>'
+            f'<text x="{left_margin - label_margin}" y="{y + text_offset}" text-anchor="end" fill="{font_color}" font-family="{font_family}" font-size="{font_size}" shape-rendering="geometricPrecision">{actual_value:.0f}</text>'
         )
 
     images_directory = os.path.dirname(os.path.realpath(__file__)) + "/images"
     for i, (language, performance_results) in enumerate(data.items()):
         x = left_margin + 2 * label_margin + i * column_width
         height = (performance_results["time"] / max_height) * chart_height
-        print(f"{language=}, {height=}")
         svg_elements.append(
             f'<rect x="{x}" y="{chart_bottom - height}" width="{bar_width}" height="{height}" fill="#8884d8"/>'
         )
@@ -82,6 +91,16 @@ def svg_to_base64(image_path):
         return f"data:{mime_type};base64,{encoded}"
 
 
+def save_as_png(svg_file, png_file, width=1920, height=1080):
+    cairosvg.svg2png(
+        url=svg_file,
+        write_to=png_file,
+        output_width=width,
+        output_height=height,
+        background_color="black",
+    )
+
+
 if __name__ == "__main__":
     data = {
         "C": {"time": 2},
@@ -107,6 +126,8 @@ if __name__ == "__main__":
         sorted(data.items(), key=lambda item: (item[1]["time"], item[0]))
     )
     output_file = "bar_chart.svg"
-    result = create_bar_chart_svg(sorted_data)
+    result = create_bar_chart_svg(sorted_data, "Two Sum")
     with open(output_file, "w") as f:
         f.write(result)
+
+    save_as_png(output_file, output_file.replace(".svg", ".png"))
