@@ -14,7 +14,7 @@ def plot_sorted_data_as_png(problem_name: str, data: Mapping[str, Mapping[str, A
         sorted(data.items(), key=lambda item: (item[1]["time"], item[0]))
     )
     svg_content = create_bar_chart_svg(problem_name, sorted_data)
-    output_file = f"{problem_name.replace(' ', '_')}.svg"
+    output_file = f"results/{problem_name.replace(' ', '_')}.svg"
     save_as_svg(output_file, svg_content)
     save_as_png(output_file)
 
