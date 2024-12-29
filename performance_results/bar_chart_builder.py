@@ -75,11 +75,7 @@ def create_bar_chart_svg(
         )
         image_name = performance_results.get("image") or f"{language}.svg"
         image_path = f"{images_directory}/{image_name}"
-        base64_image = (
-            svg_to_base64(image_path)
-            if image_name.endswith(".svg")
-            else png_to_base64(image_path)
-        )
+        base64_image = image_to_base64(image_path)
         svg_elements.append(
             f'<image x="{x - image_offset}" y="{chart_bottom + label_margin}" width="{column_width}" height="{image_height}" href="{base64_image}"/>'
         )
@@ -88,17 +84,7 @@ def create_bar_chart_svg(
     return "\n".join(svg_elements)
 
 
-def png_to_base64(image_path: str) -> str:
-    """Encode a PNG image to base64.
-    This is necessary to do to embed images in SVG files. Otherwise, it fails,
-    likely due to some security restriction."""
-
-    with open(image_path, "rb") as img:
-        encoded = base64.b64encode(img.read()).decode("utf-8")
-        return f"data:image/png;base64,{encoded}"
-
-
-def svg_to_base64(image_path):
+def image_to_base64(image_path):
     """Encode an SVG image to base64."""
     with open(image_path, "rb") as img:
         encoded = base64.b64encode(img.read()).decode("utf-8")
