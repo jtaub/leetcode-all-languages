@@ -14,6 +14,7 @@ def create_bar_chart_svg(
     font_color="white",
     font_family="Consolas",
     font_size="24px",
+    bar_color="#8884d8",
     top_margin=50,
     bottom_margin=50,
     left_margin=60,
@@ -56,7 +57,7 @@ def create_bar_chart_svg(
         x = left_margin + 2 * label_margin + i * column_width
         height = (performance_results["time"] / max_height) * chart_height
         svg_elements.append(
-            f'<rect x="{x}" y="{chart_bottom - height}" width="{bar_width}" height="{height}" fill="#8884d8"/>'
+            f'<rect x="{x}" y="{chart_bottom - height}" width="{bar_width}" height="{height}" fill="{bar_color}"/>'
         )
         image_name = performance_results.get("image") or f"{language}.svg"
         image_path = f"{images_directory}/{image_name}"
@@ -74,7 +75,7 @@ def create_bar_chart_svg(
 
 
 def png_to_base64(image_path: str) -> str:
-    """Encode an image file to base64.
+    """Encode a PNG image to base64.
     This is necessary to do to embed images in SVG files. Otherwise, it fails,
     likely due to some security restriction."""
 
@@ -84,6 +85,7 @@ def png_to_base64(image_path: str) -> str:
 
 
 def svg_to_base64(image_path):
+    """Encode an SVG image to base64."""
     with open(image_path, "rb") as img:
         encoded = base64.b64encode(img.read()).decode("utf-8")
         extension = os.path.splitext(image_path)[1].lower()
@@ -91,10 +93,11 @@ def svg_to_base64(image_path):
         return f"data:{mime_type};base64,{encoded}"
 
 
-def save_as_png(svg_file, png_file, width=1920, height=1080):
+def save_as_png(svg_file, png_file="", width=1920, height=1080):
+    """Saves our SVG file as a PNG file."""
     cairosvg.svg2png(
         url=svg_file,
-        write_to=png_file,
+        write_to=png_file or svg_file.replace(".svg", ".png"),
         output_width=width,
         output_height=height,
         background_color="black",
@@ -130,4 +133,4 @@ if __name__ == "__main__":
     with open(output_file, "w") as f:
         f.write(result)
 
-    save_as_png(output_file, output_file.replace(".svg", ".png"))
+    save_as_png(output_file)
