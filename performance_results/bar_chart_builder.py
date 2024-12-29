@@ -66,7 +66,7 @@ def create_bar_chart_svg(
             f'<text x="{left_margin - label_margin}" y="{y + text_offset}" text-anchor="end" fill="{font_color}" font-family="{font_family}" font-size="{font_size}" shape-rendering="geometricPrecision">{actual_value:.0f}</text>'
         )
 
-    images_directory = os.path.dirname(os.path.realpath(__file__)) + "/images"
+    images_directory = os.path.dirname(os.path.realpath(__file__)) + "/logos"
     for i, (language, performance_results) in enumerate(data.items()):
         x = left_margin + 2 * label_margin + i * column_width
         height = (performance_results["time"] / max_height) * chart_height
