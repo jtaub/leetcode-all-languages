@@ -57,7 +57,7 @@ def create_bar_chart_svg(
         f'<text x="{width/2}" y="{svg_height+bottom_margin/2}" text-anchor="middle" fill="{font_color}" font-family="{font_family}" font-size="{font_size}">{x_label}</text>',
     ]
 
-    for y in range(top_margin, chart_bottom, grid_spacing):
+    for y in range(top_margin, chart_bottom + grid_spacing, grid_spacing):
         actual_value = int((chart_bottom - y) * max_height / chart_height)
         svg_elements.append(
             f'<line x1="{left_margin}" y1="{y}" x2="{width - right_margin}" y2="{y}" stroke="#e0e0e0"/>'
