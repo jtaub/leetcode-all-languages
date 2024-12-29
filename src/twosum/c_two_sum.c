@@ -1,6 +1,6 @@
 #include <uthash.h>
 
-struct hashMap {
+struct HashMap {
     int key;
     int value;
     UT_hash_handle hh;
@@ -11,12 +11,12 @@ struct hashMap {
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
-    struct hashMap *num_to_index = NULL; 
+    struct HashMap *numToIndex = NULL; 
 
     for (int i = 0; i < numsSize; i++) {
         int num = nums[i];
-        struct hashMap *found;
-        HASH_FIND_INT(num_to_index, &num, found);
+        struct HashMap *found;
+        HASH_FIND_INT(numToIndex, &num, found);
 
         if (found) {
             *returnSize = 2;
@@ -26,10 +26,10 @@ int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
             return result;
         }
 
-        struct hashMap *entry = malloc(sizeof(struct hashMap));
+        struct HashMap *entry = malloc(sizeof(struct HashMap));
         entry->key = target - num;
         entry->value = i;
-        HASH_ADD_INT(num_to_index, key, entry); 
+        HASH_ADD_INT(numToIndex, key, entry); 
     }
 
     *returnSize = 0;
