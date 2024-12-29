@@ -37,7 +37,7 @@ def create_bar_chart_svg(
     bar_width=40,
     image_offset=5,
     text_offset=5,
-    grid_spacing=50,
+    grid_spacing=75,
     image_height=30,
     label_margin=10,
 ) -> str:
@@ -47,7 +47,7 @@ def create_bar_chart_svg(
     width = len(data) * column_width + left_margin + right_margin
 
     max_time = max(result["time"] for result in data.values())
-    max_height = math.ceil(max_time / 5) * 5
+    max_height = math.ceil(max_time / 5) * 5  # round up to the nearest multiple of 5
     title = f"LeetCode {problem_name} Benchmarks"
 
     svg_elements = [
@@ -58,12 +58,12 @@ def create_bar_chart_svg(
     ]
 
     for y in range(top_margin, chart_bottom, grid_spacing):
-        actual_value = (chart_bottom - y) * max_height / chart_height
+        actual_value = int((chart_bottom - y) * max_height / chart_height)
         svg_elements.append(
             f'<line x1="{left_margin}" y1="{y}" x2="{width - right_margin}" y2="{y}" stroke="#e0e0e0"/>'
         )
         svg_elements.append(
-            f'<text x="{left_margin - label_margin}" y="{y + text_offset}" text-anchor="end" fill="{font_color}" font-family="{font_family}" font-size="{font_size}" shape-rendering="geometricPrecision">{actual_value:.0f}</text>'
+            f'<text x="{left_margin - label_margin}" y="{y + text_offset}" text-anchor="end" fill="{font_color}" font-family="{font_family}" font-size="{font_size}" shape-rendering="geometricPrecision">{actual_value}</text>'
         )
 
     images_directory = os.path.dirname(os.path.realpath(__file__)) + "/logos"
@@ -98,7 +98,7 @@ def save_as_svg(svg_file_name: str, svg_content: str):
         f.write(svg_content)
 
 
-def save_as_png(svg_file, png_file="", width=2560, height=1440):
+def save_as_png(svg_file: str, png_file="", width=2560, height=1440):
     """Saves our SVG file as a PNG file."""
     cairosvg.svg2png(
         url=svg_file,
