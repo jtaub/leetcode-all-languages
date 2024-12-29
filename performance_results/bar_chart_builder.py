@@ -107,27 +107,3 @@ def save_as_png(svg_file, png_file="", width=2560, height=1440):
         output_height=height,
         background_color="black",
     )
-
-
-if __name__ == "__main__":
-    data = {
-        "C": {"time": 2},
-        "C (loops)": {"time": 99, "image": "C.svg"},
-        "C#": {"time": 3},
-        "C++": {"time": 3},
-        "Dart": {"time": 7},
-        "Elixir": {"time": 3, "image": "Elixir.png"},
-        "Java": {"time": 2},
-        "JavaScript": {"time": 1, "image": "JavaScript.png"},
-        "Kotlin": {"time": 2},
-        "Kotlin (functional)": {"time": 20, "image": "Kotlin.svg"},
-        "PHP": {"time": 1},
-        "Python": {"time": 0, "image": "Python.png"},
-        "Racket": {"time": 0},
-        "Ruby": {"time": 0},
-        "Rust": {"time": 0},
-        "Scala": {"time": 25, "image": "Scala.png"},
-        "TypeScript": {"time": 0},
-    }
-
-    plot_sorted_data_as_png("Two Sum", data)
