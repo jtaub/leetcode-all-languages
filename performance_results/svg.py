@@ -117,7 +117,7 @@ if __name__ == "__main__":
         "Kotlin": {"time": 2},
         "Kotlin (functional)": {"time": 20, "image": "Kotlin.svg"},
         "PHP": {"time": 1},
-        "Python": {"time": 0},
+        "Python": {"time": 0, "image": "Python.png"},
         "Racket": {"time": 0},
         "Ruby": {"time": 0},
         "Rust": {"time": 0},
