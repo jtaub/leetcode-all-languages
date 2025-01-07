@@ -35,7 +35,7 @@ def create_bar_chart_svg(
     svg_height=400,
     column_width=50,
     bar_width=40,
-    image_offset=5,
+    image_offset=20,
     text_offset=5,
     grid_spacing=75,
     image_height=30,
@@ -71,7 +71,7 @@ def create_bar_chart_svg(
         x = left_margin + 2 * label_margin + i * column_width
         height = (performance_results["time"] / max_height) * chart_height
         svg_elements.append(
-            f'<rect x="{x}" y="{chart_bottom - height}" width="{bar_width}" height="{height}" fill="{bar_color}"/>'
+            f'<rect x="{x - 15}" y="{chart_bottom - height}" width="{bar_width}" height="{height}" fill="{bar_color}"/>'
         )
         image_name = performance_results.get("image") or f"{language}.svg"
         image_path = f"{images_directory}/{image_name}"
