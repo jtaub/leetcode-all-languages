@@ -4,10 +4,9 @@ if __name__ == "__main__":
     plot_sorted_data_as_png(
         problem_name="Two Sum",
         data={
-            # "C": {"time": 2},
-            # "C (loops)": {"time": 99, "image": "C.svg"},
+            "C": {"time": 35},
             "C#": {"time": 13},
-            # "C++": {"time": 2},
+            "C++": {"time": 17},
             # "Dart": {"time": 7},
             # "Elixir": {"time": 3, "image": "Elixir.png"},
             # "Erlang": {"time": 2, "image": "Erlang.png"},
@@ -21,6 +20,7 @@ if __name__ == "__main__":
             "Ruby": {"time": 9},
             # "Rust": {"time": 0},
             # "Scala": {"time": 25, "image": "Scala.png"},
+            "Swift": {"time": 4},
             # "TypeScript": {"time": 0},
         },
     )
