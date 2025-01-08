@@ -11,6 +11,7 @@ if __name__ == "__main__":
             "Dart": {"time": 7},
             "Elixir": {"time": 3, "image": "Elixir.png"},
             "Erlang": {"time": 2, "image": "Erlang.png"},
+            "Go": {"time": 0},
             "Java": {"time": 2},
             "JavaScript": {"time": 1, "image": "JavaScript.png"},
             "Kotlin": {"time": 2},

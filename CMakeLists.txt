@@ -14,5 +14,6 @@ include_directories(/usr/local/include)
 include_directories(/usr/include/clang19)
 include_directories(./src)
 
-add_executable(leetcode16ways main.c)
-add_executable(leetcode16wayscpp src/twosum/cpp_two_sum.cpp)
+add_executable(ctwosum main.c)
+add_executable(cpptwosum src/twosum/cpp_two_sum.cpp)
+add_executable(cppcontainsduplicate src/containsduplicate/cpp_contains_duplicate.cpp)
