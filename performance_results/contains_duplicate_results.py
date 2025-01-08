@@ -2,7 +2,7 @@ from bar_chart_builder import plot_sorted_data_as_png
 
 if __name__ == "__main__":
     plot_sorted_data_as_png(
-        problem_name="Two Sum",
+        problem_name="Contains Duplicate",
         data={
             "C": {"time": 35},
             "C#": {"time": 13},
