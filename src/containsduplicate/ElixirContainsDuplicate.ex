@@ -5,10 +5,6 @@ defmodule Solution do
   end
   
   defp go([], _), do: false
-  defp go([num | tail], seen) do
-    case MapSet.member?(seen, num) do
-      true -> true
-      false -> go(tail, MapSet.put(seen, num)) 
-    end
-  end
+  defp go([num | tail], seen), do: 
+    MapSet.member?(seen, num) or go(tail, MapSet.put(seen, num))
 end
