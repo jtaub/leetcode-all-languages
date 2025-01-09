@@ -7,7 +7,7 @@ if __name__ == "__main__":
             "C": {"time": 35},
             "C#": {"time": 13},
             "C++": {"time": 17},
-            # "Dart": {"time": 7},
+            "Dart": {"time": 11},
             # "Elixir": {"time": 3, "image": "Elixir.png"},
             # "Erlang": {"time": 2, "image": "Erlang.png"},
             "Go": {"time": 9},
