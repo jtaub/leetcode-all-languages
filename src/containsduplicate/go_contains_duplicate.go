@@ -1,16 +1,14 @@
 package containsduplicate
 
-import "github.com/emirpasic/gods/sets/hashset"
+import "sort"
 
 func containsDuplicate(nums []int) bool {
-	seen := hashset.New()
+	sort.Ints(nums)
 
-	for _, num := range nums {
-		if seen.Contains(num) {
+	for i := 1; i < len(nums); i++ {
+		if nums[i] == nums[i-1] {
 			return true
 		}
-
-		seen.Add(num)
 	}
 
 	return false
