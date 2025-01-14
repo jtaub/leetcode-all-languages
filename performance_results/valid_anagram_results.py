@@ -4,7 +4,7 @@ if __name__ == "__main__":
     plot_sorted_data_as_png(
         problem_name="Contains Duplicate",
         data={
-            # "C": {"time": 35},
+            "C": {"time": 0},
             # "C#": {"time": 13},
             "C++": {"time": 0},
             # "Dart": {"time": 11},
