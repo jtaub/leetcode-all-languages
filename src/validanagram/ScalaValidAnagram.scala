@@ -1,6 +1,7 @@
 package validanagram
 
 import scala.annotation.tailrec
+import scala.collection.mutable
 
 def isAnagramSort(s: String, t: String): Boolean =
   s.sorted == t.sorted
@@ -21,6 +22,16 @@ def isAnagramOneMap(s: String, t: String): Boolean =
   // Only count the chars for one, then move on to the other
   go(s.groupMapReduce(identity)(_ => 1)(_ + _), 0)
 
+def isAnagramMutableMap(s: String, t: String): Boolean =
+  val count = mutable.Map[Char, Int]()
+  
+  for (c <- s)
+    count(c) = count.getOrElse(c, 0) + 1
+    
+  for (c <- t)
+    count(c) = count.getOrElse(c, 0) - 1
+    
+  count.values.forall(_ == 0)
 
 def isAnagramArray(s: String, t: String): Boolean =
   val result = Array.fill(26)(0)
