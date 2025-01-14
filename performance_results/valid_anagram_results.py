@@ -10,7 +10,7 @@ if __name__ == "__main__":
             # "Dart": {"time": 11},
             # "Elixir": {"time": 70, "image": "Elixir.png"},
             # "Erlang": {"time": 79, "image": "Erlang.png"},
-            # "Go": {"time": 9},
+            "Go": {"time": 0},
             "Java": {"time": 3},
             # "JavaScript": {"time": 8, "image": "JavaScript.png"},
             "Kotlin": {"time": 3},
