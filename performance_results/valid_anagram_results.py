@@ -6,7 +6,7 @@ if __name__ == "__main__":
         data={
             # "C": {"time": 35},
             # "C#": {"time": 13},
-            # "C++": {"time": 17},
+            "C++": {"time": 0},
             # "Dart": {"time": 11},
             # "Elixir": {"time": 70, "image": "Elixir.png"},
             # "Erlang": {"time": 79, "image": "Erlang.png"},
