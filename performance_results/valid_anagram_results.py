@@ -13,7 +13,7 @@ if __name__ == "__main__":
             # "Go": {"time": 9},
             "Java": {"time": 3},
             # "JavaScript": {"time": 8, "image": "JavaScript.png"},
-            # "Kotlin": {"time": 13},
+            "Kotlin": {"time": 3},
             # "PHP": {"time": 4},
             # "Python": {"time": 3, "image": "Python.png"},
             # "Racket": {"time": 57},
