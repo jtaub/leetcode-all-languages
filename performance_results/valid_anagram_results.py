@@ -12,7 +12,7 @@ if __name__ == "__main__":
             # "Erlang": {"time": 79, "image": "Erlang.png"},
             "Go": {"time": 0},
             "Java": {"time": 3},
-            # "JavaScript": {"time": 8, "image": "JavaScript.png"},
+            "JavaScript": {"time": 3, "image": "JavaScript.png"},
             "Kotlin": {"time": 3},
             # "PHP": {"time": 4},
             "Python": {"time": 5, "image": "Python.png"},
@@ -21,6 +21,6 @@ if __name__ == "__main__":
             "Rust": {"time": 0},
             "Scala": {"time": 34, "image": "Scala.png"},
             "Swift": {"time": 7, "image": "Swift.png"},
-            # "TypeScript": {"time": 5},
+            "TypeScript": {"time": 3},
         },
     )
