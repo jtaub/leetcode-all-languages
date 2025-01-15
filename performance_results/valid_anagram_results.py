@@ -5,7 +5,7 @@ if __name__ == "__main__":
         problem_name="Contains Duplicate",
         data={
             "C": {"time": 0},
-            # "C#": {"time": 13},
+            "C#": {"time": 0},
             "C++": {"time": 0},
             # "Dart": {"time": 11},
             # "Elixir": {"time": 70, "image": "Elixir.png"},
