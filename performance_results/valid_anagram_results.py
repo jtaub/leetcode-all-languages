@@ -20,7 +20,7 @@ if __name__ == "__main__":
             # "Ruby": {"time": 9},
             "Rust": {"time": 0},
             "Scala": {"time": 34, "image": "Scala.png"},
-            # "Swift": {"time": 4, "image": "Swift.png"},
+            "Swift": {"time": 7, "image": "Swift.png"},
             # "TypeScript": {"time": 5},
         },
     )
