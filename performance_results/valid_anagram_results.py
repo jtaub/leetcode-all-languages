@@ -15,7 +15,7 @@ if __name__ == "__main__":
             # "JavaScript": {"time": 8, "image": "JavaScript.png"},
             # "Kotlin": {"time": 13},
             # "PHP": {"time": 4},
-            # "Python": {"time": 3, "image": "Python.png"},
+            "Python": {"time": 5, "image": "Python.png"},
             # "Racket": {"time": 57},
             # "Ruby": {"time": 9},
             # "Rust": {"time": 0},
