@@ -17,7 +17,7 @@ if __name__ == "__main__":
             "PHP": {"time": 0},
             "Python": {"time": 5, "image": "Python.png"},
             # "Racket": {"time": 57},
-            # "Ruby": {"time": 9},
+            "Ruby": {"time": 0},
             "Rust": {"time": 0},
             "Scala": {"time": 34, "image": "Scala.png"},
             "Swift": {"time": 7, "image": "Swift.png"},
